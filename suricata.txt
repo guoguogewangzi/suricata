@@ -1,0 +1,26 @@
+目录映射：/root/logs/==/var/log/suricata/
+
+systemctl restart docker
+
+docker run --rm -d -it --net=host \
+    --cap-add=net_admin --cap-add=sys_nice \
+    -v /root/logs:/var/log/suricata \
+	jasonish/suricata:latest -i ens33
+	
+	
+	
+docker ps
+docker exec -it 容器id /bin/bash
+
+修改规则路径：
+vi /etc/suricata/suricata.yaml
+
+改为：					
+default-rule-path: /var/log/suricata/rules
+
+
+/usr/bin/suricata -r /var/log/suricata/pcap/ -l /var/log/suricata/ -k none
+ps:规则名为：suricata.rules
+
+
+fast.log：告警信息
