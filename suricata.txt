@@ -15,7 +15,7 @@ docker exec -it 容器id /bin/bash
 修改规则路径：
 vi /etc/suricata/suricata.yaml
 
-改为：					
+改为：				
 default-rule-path: /var/log/suricata/rules
 
 
