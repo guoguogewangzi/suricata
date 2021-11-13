@@ -38,3 +38,6 @@ ps:规则名为：suricata.rules
 
 
 fast.log：告警信息
+
+实时查看告警日志：
+tail -f /var/log/suricata/fast.log

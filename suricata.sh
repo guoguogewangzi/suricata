@@ -29,3 +29,7 @@ docker exec -it $id /bin/bash
 #cat /etc/suricata/suricata.yaml
 #是否是：
 #default-rule-path: /var/log/suricata/rules
+
+
+#实时查看告警日志：
+#tail -f /var/log/suricata/fast.log
