@@ -1,4 +1,4 @@
-目录映射：/root/logs/==/var/log/suricata/
+目录映射：（宿主机）/root/logs/==（suricata容器）/var/log/suricata/
 
 systemctl restart docker
 
@@ -7,7 +7,10 @@ docker run --rm -d -it --net=host \
     -v /root/logs:/var/log/suricata \
 	jasonish/suricata:latest -i ens33
 	
-	
+--rm: 退出并删除
+-d: 后台运行
+-it: 交互进入
+-v: 映射目录
 	
 docker ps
 docker exec -it 容器id /bin/bash
@@ -18,9 +21,20 @@ vi /etc/suricata/suricata.yaml
 改为：				
 default-rule-path: /var/log/suricata/rules
 
+离线检测：
 
+批量
 /usr/bin/suricata -r /var/log/suricata/pcap/ -l /var/log/suricata/ -k none
 ps:规则名为：suricata.rules
+
+单条
+/usr/bin/suricata -c /etc/suricata/suricata.yaml -s /var/log/suricata/suricata.rules -r /var/log/suricata/pcap/test.pcap -l /var/log/suricata/ -k none
+
+-s：*附加规则路径到suricata.yaml中
+-r: *pcap文件或目录
+-l: *生成的日志路径
+-c: 配置文件路径
+-k: 强制校验和检查(全部)或禁用它(无)
 
 
 fast.log：告警信息

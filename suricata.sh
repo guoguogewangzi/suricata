@@ -24,3 +24,8 @@ docker exec -it $id /bin/bash
 
 #离线检测命令
 #/usr/bin/suricata -r /var/log/suricata/pcap/ -l /var/log/suricata/ -k none
+
+#验证是否成功：
+#cat /etc/suricata/suricata.yaml
+#是否是：
+#default-rule-path: /var/log/suricata/rules
